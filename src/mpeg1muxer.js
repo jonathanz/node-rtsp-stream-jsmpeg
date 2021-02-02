@@ -10,7 +10,7 @@ class Mpeg1Muxer extends EventEmitter {
     this.url = options.url;
     this.port = options.port;
 
-    this.stream = child_process.spawn("ffmpeg", genFfmpegFormatConfigs(this.url, this.port), {
+    this.stream = child_process.spawn(options.ffmpegpath || "ffmpeg", genFfmpegFormatConfigs(this.url, this.port), {
       detached: false
     });
 

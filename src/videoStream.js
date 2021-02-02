@@ -9,6 +9,7 @@ class VideoStream extends EventEmitter {
   constructor(options) {
     super(options)
     this.name = options.name
+    this.ffmpegpath = options.ffmpegpath
     this.url = options.url
     this.width = options.width
     this.height = options.height
@@ -102,7 +103,7 @@ class VideoStream extends EventEmitter {
   }
 
   start() {
-    this.mpeg1Muxer = new Mpeg1Muxer({ url: this.url, port: this.port })
+    this.mpeg1Muxer = new Mpeg1Muxer({ url: this.url, port: this.port, ffmpegpath: this.ffmpegpath })
     this.mpeg1Muxer.on('mpeg1data', (data) => { return this.emit('camdata', data) })
 
     let gettingInputData = false
